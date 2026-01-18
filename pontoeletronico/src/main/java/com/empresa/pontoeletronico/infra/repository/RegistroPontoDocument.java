@@ -1,11 +1,28 @@
-package com.empresa.pontoeletronico.domain.model;
+package com.empresa.pontoeletronico.infra.repository;
+
+import com.empresa.pontoeletronico.domain.model.TipoRegistro;
+import org.springframework.cglib.core.Local;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class RegistroPonto {
+@Document(collection = "registros_ponto")
+public class RegistroPontoDocument {
+
+    @Id
+    private String id;
+
     private String funcionarioId;
-    private LocalDate data;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFuncionarioId() {
         return funcionarioId;
@@ -16,11 +33,11 @@ public class RegistroPonto {
     }
 
     public LocalDate getData() {
-        return data;
+        return Data;
     }
 
     public void setData(LocalDate data) {
-        this.data = data;
+        Data = data;
     }
 
     public LocalDateTime getHorario() {
@@ -32,20 +49,14 @@ public class RegistroPonto {
     }
 
     public TipoRegistro getTipo() {
-        return tipo;
+        return Tipo;
     }
 
     public void setTipo(TipoRegistro tipo) {
-        this.tipo = tipo;
+        Tipo = tipo;
     }
 
+    private LocalDate Data;
     private LocalDateTime horario;
-    private TipoRegistro tipo;
-
-    public RegistroPonto(String funcionarioId, LocalDate data, LocalDateTime horario, TipoRegistro tipo) {
-        this.funcionarioId = funcionarioId;
-        this.data = data;
-        this.horario = horario;
-        this.tipo = tipo;
-    }
+    private TipoRegistro Tipo;
 }
